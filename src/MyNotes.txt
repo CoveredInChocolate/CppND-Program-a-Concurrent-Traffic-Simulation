@@ -1,5 +1,10 @@
-### Notes
+######## Notes
 
+#### GitHub
+git clone https://github.com/CoveredInChocolate/CppND-Program-a-Concurrent-Traffic-Simulation.git
+
+
+#### Files for tasks
 - FP.1
     TrafficLight.h
 
