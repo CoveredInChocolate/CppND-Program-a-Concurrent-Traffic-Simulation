@@ -41,6 +41,14 @@ TrafficLightPhase TrafficLight::getCurrentPhase()
     return _currentPhase;
 }
 
+void TrafficLight::changePhase() {
+    if(_currentPhase == TrafficLightPhase::red) {
+        _currentPhase = TrafficLightPhase::green;
+    } else if (_currentPhase == TrafficLightPhase::green) {
+        _currentPhase = TrafficLightPhase::red;
+    }
+}
+
 void TrafficLight::simulate()
 {
     // FP.2b : Finally, the private method "cycleThroughPhases" should be started in a thread when
@@ -73,6 +81,7 @@ void TrafficLight::cycleThroughPhases()
         long timeSinceLastUpdate = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - lastUpdate).count();
         if (timeSinceLastUpdate >= cycleDuration) {
             std::cout << "UPDATE CYCLE" << std::endl;
+            changePhase();
 
             // reset stop watch for next cycle
             lastUpdate = std::chrono::system_clock::now();

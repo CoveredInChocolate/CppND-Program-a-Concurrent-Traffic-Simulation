@@ -54,6 +54,8 @@ public:
 
     TrafficLightPhase getCurrentPhase();
 
+    void changePhase();
+
 private:
     // typical behaviour methods
     void cycleThroughPhases();
