@@ -42,6 +42,7 @@ TrafficLightPhase TrafficLight::getCurrentPhase()
 }
 
 void TrafficLight::changePhase() {
+    // Simple function to switch phase to different color
     if(_currentPhase == TrafficLightPhase::red) {
         _currentPhase = TrafficLightPhase::green;
     } else if (_currentPhase == TrafficLightPhase::green) {
@@ -64,11 +65,14 @@ void TrafficLight::cycleThroughPhases()
     // to the message queue using move semantics. The cycle duration should be a random value between 4 and 6 seconds. 
     // Also, the while-loop should use std::this_thread::sleep_for to wait 1ms between two cycles. 
 
-    // Drawing a randon uniform variable in R
-    // > runif(n = 1, min = 4, max = 6)
-    // [1] 5.685552
+    // Drawing random uniform variables in C++
+    std::uniform_real_distribution<double> dist(4000, 6000);
+    std::mt19937 rng;
+    // Setting random seed
+    rng.seed(std::random_device{}());
 
-    double cycleDuration = 5685; // duration of a single simulation cycle in ms
+    // Drawing a random number of milliseconds between 4000 and 6000
+    double cycleDuration = dist(rng); // duration of a single simulation cycle in ms
     std::chrono::time_point<std::chrono::system_clock> lastUpdate;
 
     // init stop watch
@@ -80,7 +84,7 @@ void TrafficLight::cycleThroughPhases()
         // compute time difference to stop watch
         long timeSinceLastUpdate = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - lastUpdate).count();
         if (timeSinceLastUpdate >= cycleDuration) {
-            std::cout << "UPDATE CYCLE" << std::endl;
+            std::cout << ">> UPDATE CYCLE" << std::endl;
             changePhase();
 
             // reset stop watch for next cycle
