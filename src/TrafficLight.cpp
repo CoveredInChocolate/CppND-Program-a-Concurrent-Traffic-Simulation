@@ -96,8 +96,8 @@ void TrafficLight::cycleThroughPhases()
     rng.seed(std::random_device{}());
 
     // Drawing a random number of milliseconds between 4000 and 6000
-    double cycleDuration = dist(rng); // duration of a single simulation cycle in ms
     std::chrono::time_point<std::chrono::system_clock> lastUpdate;
+    double cycleDuration = dist(rng); // duration of a single simulation cycle in ms
     std::cout << ">>>> CYCLEDUR " << cycleDuration << std::endl;
 
     // init stop watch
@@ -112,6 +112,10 @@ void TrafficLight::cycleThroughPhases()
             std::cout << ">>>> UPDATE CYCLE AND ADDING TO QUEUE" << std::endl;
             changePhase();
             msgQ.send(std::move(getCurrentPhase()));
+
+            // Update cycle time
+            cycleDuration = dist(rng); // duration of a single simulation cycle in ms
+            std::cout << ">>>> NEW CYCLEDUR " << cycleDuration << std::endl;
 
             // reset stop watch for next cycle
             lastUpdate = std::chrono::system_clock::now();
