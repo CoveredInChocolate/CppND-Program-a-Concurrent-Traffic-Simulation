@@ -18,8 +18,9 @@ X FP.4
     TrafficLight.h
     TrafficLight.cpp
 
-- FP.5
+X FP.5
     TrafficLight.cpp
 
-- FP.6
+X FP.6
+    intersection.h
     intersection.cpp
