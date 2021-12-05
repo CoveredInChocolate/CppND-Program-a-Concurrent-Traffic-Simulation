@@ -20,8 +20,8 @@ class MessageQueue
 {
 public:
     void send(T &&msg);
-    T receive(return T);
-    std::dequeue _queue;
+    T receive();
+    std::deque _queue;
 
 private:
     std::condition_variable cv;
