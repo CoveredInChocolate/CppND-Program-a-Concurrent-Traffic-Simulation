@@ -19,6 +19,13 @@ void MessageQueue<T>::send(T &&msg)
 {
     // FP.4a : The method send should use the mechanisms std::lock_guard<std::mutex> 
     // as well as _condition.notify_one() to add a new message to the queue and afterwards send a notification.
+    // perform vector modification under the lock
+    //std::unique_lock<std::mutex> uLock(lck);
+    //cv.wait(uLock, [this] { return !_vehicles.empty(); }); // pass unique lock to condition variable
+    std::lock_guard<std::mutex> uLock(lck);
+    std::cout << ">>>> UPDATE QUEUE |" << msg << "|" << std::endl;
+    _queue.emplace_back(std::move(msg));
+    cv.notify_one();
 }
 
 /* Implementation of class "TrafficLight" */
@@ -84,7 +91,7 @@ void TrafficLight::cycleThroughPhases()
         // compute time difference to stop watch
         long timeSinceLastUpdate = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - lastUpdate).count();
         if (timeSinceLastUpdate >= cycleDuration) {
-            std::cout << ">> UPDATE CYCLE" << std::endl;
+            std::cout << ">>>> UPDATE CYCLE" << std::endl;
             changePhase();
 
             // reset stop watch for next cycle
