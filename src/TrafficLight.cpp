@@ -13,7 +13,7 @@ T MessageQueue<T>::receive()
     std::unique_lock<std::mutex> uLock(lck);
     cv.wait(uLock, [this] { return !_queue.empty(); }); // pass unique lock to condition variable
 
-    T msg = std::move(_queue.front())
+    T msg = std::move(_queue.front());
     _queue.pop_front();
 
     return msg;
