@@ -5,13 +5,13 @@ git clone https://github.com/CoveredInChocolate/CppND-Program-a-Concurrent-Traff
 
 
 #### Files for tasks
-- FP.1
+X FP.1
     TrafficLight.h
 
-- FP.2
+X FP.2
     TrafficLight.cpp
 
-- FP.3
+X FP.3
     TrafficLight.h
 
 - FP.4
