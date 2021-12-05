@@ -81,6 +81,7 @@ void TrafficLight::cycleThroughPhases()
     // Drawing a random number of milliseconds between 4000 and 6000
     double cycleDuration = dist(rng); // duration of a single simulation cycle in ms
     std::chrono::time_point<std::chrono::system_clock> lastUpdate;
+            std::cout << ">>>> CYCLEDUR " << cycleDuration << std::endl;
 
     // init stop watch
     lastUpdate = std::chrono::system_clock::now();
@@ -91,8 +92,9 @@ void TrafficLight::cycleThroughPhases()
         // compute time difference to stop watch
         long timeSinceLastUpdate = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - lastUpdate).count();
         if (timeSinceLastUpdate >= cycleDuration) {
-            std::cout << ">>>> UPDATE CYCLE" << std::endl;
+            std::cout << ">>>> UPDATE CYCLE AND ADDING TO QUEUE" << std::endl;
             changePhase();
+            msgQ.send(std::move(getCurrentPhase()));
 
             // reset stop watch for next cycle
             lastUpdate = std::chrono::system_clock::now();
