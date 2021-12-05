@@ -30,6 +30,8 @@ private:
 // can be either "red" or "green". Also, add the private method "void cycleThroughPhases()". 
 // Furthermore, there shall be the private member _currentPhase which can take "red" or "green" as its value. 
 
+enum TrafficLightPhase {red, green};
+
 class TrafficLight : public TrafficObject
 {
 public:
@@ -50,8 +52,7 @@ public:
 
     void simulate();
 
-    // Wait with this one
-    //TrafficLightPhase getCurrentPhase();
+    TrafficLightPhase getCurrentPhase();
 
 private:
     // typical behaviour methods
@@ -63,6 +64,7 @@ private:
 
     std::condition_variable _condition;
     std::mutex _mutex;
+    TrafficLightPhase _currentPhase;
 };
 
 #endif
