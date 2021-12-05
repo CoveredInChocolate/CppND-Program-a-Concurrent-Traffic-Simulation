@@ -21,7 +21,7 @@ class MessageQueue
 public:
     void send(T &&msg);
     T receive();
-    std::deque<TrafficLightPhase> _queue;
+    std::deque<T> _queue;
 
 private:
     std::condition_variable cv;
