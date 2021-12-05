@@ -14,7 +14,7 @@ X FP.2
 X FP.3
     TrafficLight.h
 
-- FP.4
+X FP.4
     TrafficLight.h
     TrafficLight.cpp
 
