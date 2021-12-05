@@ -34,24 +34,28 @@ class TrafficLight
 {
 public:
     // constructor / desctructor
+    TrafficLight();
+    ~TrafficLight();
 
     // getters / setters
+    /*
+    int getID() { return _id; }
+    void setPosition(double x, double y);
+    void getPosition(double &x, double &y);
+    ObjectType getType() { return _type; }
+    */
 
     // typical behaviour methods
-    void waitForGreen() {
-    }
+    void waitForGreen();
 
-    void simulate() {
-    }
+    void simulate();
 
     // Wait with this one
-    //TrafficLightPhase getCurrentPhase() {
-    //}
+    //TrafficLightPhase getCurrentPhase();
 
 private:
     // typical behaviour methods
-    void cycleThroughPhases() {
-    }
+    void cycleThroughPhases();
 
     // FP.4b : create a private member of type MessageQueue for messages of type TrafficLightPhase 
     // and use it within the infinite loop to push each new TrafficLightPhase into it by calling 
