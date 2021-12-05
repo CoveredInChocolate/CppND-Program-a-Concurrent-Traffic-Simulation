@@ -60,7 +60,7 @@ void TrafficLight::cycleThroughPhases()
     // > runif(n = 1, min = 4, max = 6)
     // [1] 5.685552
 
-    double cycleDuration = 5.68; // duration of a single simulation cycle in ms
+    double cycleDuration = 5685; // duration of a single simulation cycle in ms
     std::chrono::time_point<std::chrono::system_clock> lastUpdate;
 
     // init stop watch
